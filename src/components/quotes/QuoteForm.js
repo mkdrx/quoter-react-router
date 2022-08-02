@@ -1,7 +1,4 @@
 import { Fragment, useRef, useState } from "react";
-// Prompt Component: watches if we navigate away, if a set condition is met it will show a warning
-// needs 2 props: when(true/false) & message with a function(location) returning text
-import { Prompt } from "react-router-dom";
 
 import Card from "../UI/Card";
 import LoadingSpinner from "../UI/LoadingSpinner";
@@ -37,12 +34,6 @@ const QuoteForm = (props) => {
 
   return (
     <Fragment>
-      <Prompt
-        when={isEntering}
-        message={(location) =>
-          "Are you sure you want to leave? All your entered data will be lost!"
-        }
-      />
       <Card>
         <form
           onFocus={formFocusedHandler}

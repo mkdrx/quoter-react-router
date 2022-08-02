@@ -1,19 +1,15 @@
 import { Fragment, useEffect } from "react";
-// useRouteMatch - similar to useLocation but with more info
-import { useParams, Route, Link, useRouteMatch } from "react-router-dom";
+import { useParams, Outlet } from "react-router-dom";
 
+import HighlightedQuote from "../components/quotes/HighlightedQuote";
 import useHttp from "../hooks/use-http";
 import { getSingleQuote } from "../lib/api";
 
-import Comments from "../components/comments/Comments";
-import HighlightedQuote from "../components/quotes/HighlightedQuote";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 const QuoteDetail = () => {
-  // To use as path - e.g match.path match.url
-  const match = useRouteMatch();
-
   const params = useParams();
+
   const { quoteId } = params;
 
   const {
@@ -47,16 +43,7 @@ const QuoteDetail = () => {
   return (
     <Fragment>
       <HighlightedQuote text={loadedQuote.text} author={loadedQuote.author} />
-      <Route path={`${match.path}`} exact>
-        <div className="centered">
-          <Link className="btn--flat" to={`${match.url}/comments`}>
-            Load Comments
-          </Link>
-        </div>
-      </Route>
-      <Route path={`${match.path}/comments`}>
-        <Comments />
-      </Route>
+      <Outlet />
     </Fragment>
   );
 };

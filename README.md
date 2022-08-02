@@ -2,6 +2,8 @@
 
 ## Based on Udemy's React Course - Maximilian Schwarzmüller
 
+### Started with React Router v5 - migrated to v6 when the project was finished
+
 - Clone the project
 
 ```bash

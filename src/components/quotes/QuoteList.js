@@ -1,6 +1,5 @@
 import { Fragment } from "react";
-// useLocation gives information about the currently loaded url
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import QuoteItem from "./QuoteItem";
 import classes from "./QuoteList.module.css";
@@ -17,7 +16,7 @@ const sortQuotes = (quotes, ascending) => {
 };
 
 const QuoteList = (props) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   // To extract data from query parameters
@@ -29,11 +28,10 @@ const QuoteList = (props) => {
   // Helper to output the items
   const sortedQuotes = sortQuotes(props.quotes, isSortingAsc);
 
-  // Handler for updating the query parameters in the URL ascending or descending (through useHistory hook)
+  // Handler for updating the query parameters in the URL ascending or descending
   const changeSortingHandler = () => {
-    history.push({
-      pathname: location.pathname,
-      search: `?sort=${isSortingAsc ? "desc" : "asc"}`,
+    navigate(`${location.pathname}?sort=${isSortingAsc ? "desc" : "asc"}`, {
+      replace: true,
     });
   };
 
