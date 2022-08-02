@@ -31,7 +31,10 @@ const QuoteList = (props) => {
 
   // Handler for updating the query parameters in the URL ascending or descending (through useHistory hook)
   const changeSortingHandler = () => {
-    history.push("/quotes?sort=" + (isSortingAsc ? "desc" : "asc"));
+    history.push({
+      pathname: location.pathname,
+      search: `?sort=${isSortingAsc ? "desc" : "asc"}`,
+    });
   };
 
   return (
